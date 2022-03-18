@@ -1,7 +1,10 @@
 Ether
 What is ether?
-Ether is the name of the currency used within Ethereum. It is used to pay for computation within the EVM. This is done indirectly by purchasing gas for ether as explained in gas.
+Ether is the name of the currency used within Ethereum. 
+It is used to pay for computation within the EVM. T
+his is done indirectly by purchasing gas for ether as explained in gas.
 
 Denominations
 Ethereum has a metric system of denominations used as units of ether. Each denomination has its own unique name (some bear the family name of seminal figures playing a role in evolution of computer science and cryptoeconomics). The smallest denomination aka base unit of ether is called Wei. Below is a list of the named denominations and their value in Wei. Following a common (although somewhat ambiguous) pattern, ether also designates a unit (of 1e18 or one quintillion Wei) of the currency. Note that the currency is not called Ethereum as many mistakenly think, nor is Ethereum a unit.
 
+https://prnt.sc/58W6DajZqxxJ
