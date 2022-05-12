@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------v2-core/UniswapV2Pair.sol--------------------------------------------------------------------------
+
+1. Cost Accumulators :-
+
+	price0CumulativeLast = price0CumulativeLast + (_reserve1/ _reserve0) * timeElapsed                                [timeElapsed = blockTimestamp - blockTimestampLast]
+	price1CumulativeLast = price1CumulativeLast + (_reserve0/ _reserve1) * timeElapsed
+
+2. send feeTo [feeOn is true /feeTo != address(0)] :-
+
+	Liquidity (feeTo) = [(√k - √_kLast) * totalSupply] /(5*√k + √_kLast)                                              [kLast = reserve0 * reserve1  (func mint)
+
+																		                                                                                _kLast  = kLast               (func _mintFee)
+																		                                                                                k = _reserve0 * _reserve1]    (func _mintFee)
+										
+3. Liquidity :-
+
+	If _totalSupply = 0
+		√(amount0 * amount1) - MINIMUM_LIQUIDITY                                                                        [uint public constant MINIMUM_LIQUIDITY = 10**3;
+																		                                                                                amount0 = balance0 - _reserve0; 
+																		                                                                                balance0 = IERC20(token0).balanceOf(address(this))
+																		                                                                                _reserve0 = getReserves()]
+	
+	Else 
+		Min[((amount0 * _totalSupply)/ _reserve0), ((amount1 * _totalSupply)/ _reserve1)
+	
+4. amount0, amount1 (burn liquidity)
+
+	amount0 = liquidity * balance0 / _totalSupply                                                                     [liquidity = balanceOf[address(this)]
+	amount1 = liquidity * balance1 / _totalSupply
+
+----------------------------------------------------------------------v2-periphery/UniswapV2Library.sol----------------------------------------------------------------------
+
+1. quote :-
+
+	amountB = (amountA * reserveB) / reserveA
+	
+2. getAmountOut :-
+
+	amountOut = (amountIn * 997 * reserveOut) / (reserveIn * 1000 + amountIn * 997)
+
+3. getAmountIn :-
+	
+	amountIn = (reserveIn * amountOut * 1000) / (reserveOut - amountOut * 997) + 1
+
